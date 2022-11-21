@@ -31,21 +31,21 @@ describe "#subwords" do
   end
 end
 
-describe "#doubler" do
-  let(:array) { [1, 2, 3] }
+# describe "#doubler" do
+#   let(:array) { [1, 2, 3] }
 
-  it "doubles the elements of the array" do
-    expect(doubler(array)).to eq([2, 4, 6])
-  end
+#   it "doubles the elements of the array" do
+#     expect(doubler(array)).to eq([2, 4, 6])
+#   end
 
-  it "does not modify the original array" do
-    duped_array = array.dup
+#   it "does not modify the original array" do
+#     duped_array = array.dup
 
-    doubler(array)
+#     doubler(array)
 
-    expect(array).to eq(duped_array)
-  end
-end
+#     expect(array).to eq(duped_array)
+#   end
+# end
 
 describe Array do
   describe "#bubble_sort!" do
@@ -120,35 +120,35 @@ describe Array do
     end
   end
 
-  describe "#my_map" do
-    it "calls the block passed to it" do
-      expect do |block|
-        ["test array"].my_map(&block)
-      end.to yield_control.once
-    end
+  # describe "#my_map" do
+  #   it "calls the block passed to it" do
+  #     expect do |block|
+  #       ["test array"].my_map(&block)
+  #     end.to yield_control.once
+  #   end
 
-    it "yields each element to the block" do
-      expect do |block|
-        ["el1", "el2"].my_map(&block)
-      end.to yield_successive_args("el1", "el2")
-    end
+  #   it "yields each element to the block" do
+  #     expect do |block|
+  #       ["el1", "el2"].my_map(&block)
+  #     end.to yield_successive_args("el1", "el2")
+  #   end
 
-    it "runs the block for each element" do
-      expect([1, 2, 3].my_map { |el| el * el }).to eq([1, 4, 9])
-      expect([-1, 0, 1].my_map { |el| el.odd? }).to eq([true, false, true])
-    end
+  #   it "runs the block for each element" do
+  #     expect([1, 2, 3].my_map { |el| el * el }).to eq([1, 4, 9])
+  #     expect([-1, 0, 1].my_map { |el| el.odd? }).to eq([true, false, true])
+  #   end
 
-    it "does NOT call the built in built-in #map method" do
-      original_array = ["original array"]
-      expect(original_array).not_to receive(:map)
-      original_array.my_map {}
-    end
+  #   it "does NOT call the built in built-in #map method" do
+  #     original_array = ["original array"]
+  #     expect(original_array).not_to receive(:map)
+  #     original_array.my_map {}
+  #   end
 
-    it "is chainable and returns a new array" do
-      original_array = ["original array"]
-      expect(original_array.my_map {}).not_to eq(original_array)
-    end
-  end
+  #   it "is chainable and returns a new array" do
+  #     original_array = ["original array"]
+  #     expect(original_array.my_map {}).not_to eq(original_array)
+  #   end
+  # end
 
   describe "#my_select" do
     it "calls the block passed to it" do
@@ -177,36 +177,36 @@ describe Array do
     end
   end
 
-  describe "#my_inject" do
-    it "calls the block passed to it" do
-      expect do |block|
-        [1, 2].my_inject(&block)
-      end.to yield_control.once
-    end
+  # describe "#my_inject" do
+  #   it "calls the block passed to it" do
+  #     expect do |block|
+  #       [1, 2].my_inject(&block)
+  #     end.to yield_control.once
+  #   end
 
-    it "makes the first element the accumulator if no default is given" do
-      expect do |block|
-        ["el1", "el2", "el3"].my_inject(&block)
-      end.to yield_successive_args(["el1", "el2"], [nil, "el3"])
-    end
+  #   it "makes the first element the accumulator if no default is given" do
+  #     expect do |block|
+  #       ["el1", "el2", "el3"].my_inject(&block)
+  #     end.to yield_successive_args(["el1", "el2"], [nil, "el3"])
+  #   end
 
-    it "yields the accumulator and each element to the block" do
-      expect do |block|
-        [1, 2, 3].my_inject(&block)
-      end.to yield_successive_args([1, 2], [nil, 3])
-    end
+  #   it "yields the accumulator and each element to the block" do
+  #     expect do |block|
+  #       [1, 2, 3].my_inject(&block)
+  #     end.to yield_successive_args([1, 2], [nil, 3])
+  #   end
 
-    it "does NOT call the built-in #inject method" do
-      original_array = ["original array"]
-      expect(original_array).not_to receive(:inject)
-      original_array.my_inject {}
-    end
+  #   it "does NOT call the built-in #inject method" do
+  #     original_array = ["original array"]
+  #     expect(original_array).not_to receive(:inject)
+  #     original_array.my_inject {}
+  #   end
 
-    it "is chainable and returns a new array" do
-      original_array = ["original array"]
-      expect(original_array.my_inject {}).not_to eq(original_array)
-    end
-  end
+  #   it "is chainable and returns a new array" do
+  #     original_array = ["original array"]
+  #     expect(original_array.my_inject {}).not_to eq(original_array)
+  #   end
+  # end
 end
 
 describe "#concatenate" do

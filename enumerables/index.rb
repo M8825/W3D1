@@ -120,8 +120,6 @@ class Array
     return new_arr
   end
 
-  
-  
 end
 
 # calls my_each twice on the array, printing all the numbers twice.
