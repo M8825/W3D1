@@ -1,3 +1,4 @@
+require 'byebug'
 class Array
   def my_each(&blc)
     i = 0
@@ -63,21 +64,44 @@ class Array
   end
 
   def my_zip(*arrs)
-    new_arr = Array.new(self.length) {Array.new(arrs.length + 1)}
-      arrs.unshift(self)
-      (0...self.length).each do |i|
+    # new_arr = Array.new(self.length) {Array.new(arrs.length + 1)}
+    # arrs.unshift(self)
+
+    # (0...self.length).each do |i|
+
+    # end
+    new_arr = []
+
+    new_arrs =  arrs.unshift(self)
+    (0...self.length).each do |i|
+      min_arr = []
+      (0...self.length).each do |j|
+        min_arr << new_arrs[j][i]
+      end
+
+      new_arr << min_arr
+    end
+
     return new_arr
   end
 
-  a = [ 4, 5, 6 ]
-b = [ 7, 8, 9 ]
-p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
-p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+  def my_rotate(n=1)
+    new_arr = self.dup
 
-c = [10, 11, 12]
-d = [13, 14, 15]
-p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+    if n > 0
+      (0...n).each do |i|
+        first_ele = new_arr.shift
+        new_arr << first_ele
+      end
+    else
+      (0...n.abs).each do 
+        last_ele = new_arr.pop
+        new_arr.unshift(last_ele)
+      end
+    end
+
+    return new_arr
+  end
 
 end
 
@@ -113,3 +137,46 @@ end
 
 
 # p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+
+
+# a = [ 4, 5, 6 ]
+# b = [ 7, 8, 9 ]
+# p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_rotate         #=> ["b", "c", "d", "a"]
+# p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
+
+
+  # def my_rotate(n=1)
+  #   # new_arr = []
+  #   # temp_arr = []
+  #   new_arr = self.dup
+
+  #   if n > 0
+  #     (0...n).each do |i|
+  #       # temp_arr << self[1..-1] # [[1, 2,3,3], 3]
+  #       # temp_arr << self[0] 
+  #       # new_arr = temp_arr.my_flatten
+  #       # temp_arr = []
+  #       # [  "b", "c", "d", "a"]
+  #       first_ele = new_arr.shift
+  #       new_arr << first_ele
+  #     end
+  #   else
+  #     (0...n.abs).each do 
+  #       last_ele = new_arr.pop
+  #       new_arr.unshift(last_ele)
+  #     end
+  #   end
+  #   # return new_arr
+  #   return new_arr
+  # end
