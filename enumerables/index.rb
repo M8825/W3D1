@@ -103,6 +103,25 @@ class Array
     return new_arr
   end
 
+  def my_join(separater = "")
+    new_string = ""
+    self.each_with_index do |ele, i|
+      new_string += i == 0 ? ele : "#{separater}#{ele}"
+    end
+    new_string
+  end
+
+  def my_reverse
+    new_arr = []
+
+    (self.length - 1).downto(0) do |i|
+      new_arr << self[i]
+    end
+    return new_arr
+  end
+
+  
+  
 end
 
 # calls my_each twice on the array, printing all the numbers twice.
@@ -156,27 +175,37 @@ end
 # p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
 
-  # def my_rotate(n=1)
-  #   # new_arr = []
-  #   # temp_arr = []
-  #   new_arr = self.dup
+# def my_rotate(n=1)
+#   # new_arr = []
+#   # temp_arr = []
+#   new_arr = self.dup
 
-  #   if n > 0
-  #     (0...n).each do |i|
-  #       # temp_arr << self[1..-1] # [[1, 2,3,3], 3]
-  #       # temp_arr << self[0] 
-  #       # new_arr = temp_arr.my_flatten
-  #       # temp_arr = []
-  #       # [  "b", "c", "d", "a"]
-  #       first_ele = new_arr.shift
-  #       new_arr << first_ele
-  #     end
-  #   else
-  #     (0...n.abs).each do 
-  #       last_ele = new_arr.pop
-  #       new_arr.unshift(last_ele)
-  #     end
-  #   end
-  #   # return new_arr
-  #   return new_arr
-  # end
+#   if n > 0
+#     (0...n).each do |i|
+#       # temp_arr << self[1..-1] # [[1, 2,3,3], 3]
+#       # temp_arr << self[0] 
+#       # new_arr = temp_arr.my_flatten
+#       # temp_arr = []
+#       # [  "b", "c", "d", "a"]
+#       first_ele = new_arr.shift
+#       new_arr << first_ele
+#     end
+#   else
+#     (0...n.abs).each do 
+#       last_ele = new_arr.pop
+#       new_arr.unshift(last_ele)
+#     end
+#   end
+#   # return new_arr
+#   return new_arr
+# end
+
+
+#   a = [ "a", "b", "c", "d" ]
+# p a.my_join         # => "abcd"
+# p a.my_join("$")    # => "a$b$c$d"
+
+
+
+# p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+# p [ 1 ].my_reverse               #=> [1]
