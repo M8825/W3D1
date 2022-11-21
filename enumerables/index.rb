@@ -64,12 +64,6 @@ class Array
   end
 
   def my_zip(*arrs)
-    # new_arr = Array.new(self.length) {Array.new(arrs.length + 1)}
-    # arrs.unshift(self)
-
-    # (0...self.length).each do |i|
-
-    # end
     new_arr = []
 
     new_arrs =  arrs.unshift(self)
@@ -155,6 +149,27 @@ end
 
 # p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 
+# def my_zip(*arrs)
+#   # new_arr = Array.new(self.length) {Array.new(arrs.length + 1)}
+#   # arrs.unshift(self)
+
+#   # (0...self.length).each do |i|
+
+#   # end
+#   new_arr = []
+
+#   new_arrs =  arrs.unshift(self)
+#   (0...self.length).each do |i|
+#     min_arr = []
+#     (0...self.length).each do |j|
+#       min_arr << new_arrs[j][i]
+#     end
+
+#     new_arr << min_arr
+#   end
+
+#   return new_arr
+# end
 
 # a = [ 4, 5, 6 ]
 # b = [ 7, 8, 9 ]
